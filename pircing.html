@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Pricing</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      color: gray;
+    }
+
+    .pricing-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .card {
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card.flip .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 2rem;
+      background: white;
+    }
+
+    .card-front {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-front h2 {
+      font-size: 1.8rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      margin: 10px 0;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-back ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .card-back ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .highlight {
+      border: 3px solid #007BFF;
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 15px;
+      right: -40px;
+      background: #007BFF;
+      color: white;
+      padding: 5px 50px;
+      transform: rotate(45deg);
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+
+
+    
+ <header>
+    <h1>Stackly</h1>
+    <nav>
+      <a href="home2.html">Home</a>
+   <!-- <a href="features.html">Features</a> -->
+      <a href="products.html">Products</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+
+
+
+
+
+  <header>
+    <h1>Interactive Pricing Plans</h1>
+    <p class="subtitle">Click a card to see plan details</p>
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="pricing-section">
+    <!-- Basic Plan -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>Basic</h2>
+          <p class="price">$9/mo</p>
+          <button class="btn">Get Started</button>
+        </div>
+        <div class="card-back">
+          <h3>Includes:</h3>
+          <ul>
+            <li>✔ 5 Products</li>
+            <li>✔ 1 GB Storage</li>
+            <li>✔ Email Support</li>
+            <li>✘ Custom Domain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pro Plan -->
+    <div class="card highlight">
+      <span class="ribbon">Popular</span>
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>Pro</h2>
+          <p class="price">$29/mo</p>
+          <button class="btn">Get Started</button>
+        </div>
+        <div class="card-back">
+          <h3>Includes:</h3>
+          <ul>
+            <li>✔ 50 Products</li>
+            <li>✔ 10 GB Storage</li>
+            <li>✔ Priority Support</li>
+            <li>✔ Custom Domain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enterprise Plan -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>Enterprise</h2>
+          <p class="price">$59/mo</p>
+          <button class="btn">Get Started</button>
+        </div>
+        <div class="card-back">
+          <h3>Includes:</h3>
+          <ul>
+            <li>✔ Unlimited Products</li>
+            <li>✔ 100 GB Storage</li>
+            <li>✔ 24/7 Support</li>
+            <li>✔ Free Custom Domain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Flip effect on click
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("flip");
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+/* Header */
+    header {
+      background:whitesmoke; color:rgb(14, 11, 11);
+      padding:15px 30px;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    header h1 {font-size:22px; color:black;}
+    nav a {margin-left:20px; color:black; font-weight:bold; transition:0.3s;}
+    nav a:hover {color:#00c6ff;}
+    </style>

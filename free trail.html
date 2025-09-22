@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trial Items</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .items, .cart {
+      flex: 1;
+      min-width: 300px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .trial, .cart-item {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: center;
+      background: #fafafa;
+      transition: transform 0.2s;
+    }
+    .trial:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    img {
+      width: 100%;
+      max-width: 180px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      background: #007bff;
+      color: white;
+      transition: background 0.3s;
+    }
+    button:hover { background: #0056b3; }
+    .remove-btn {
+      background: #dc3545;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 Free Trial Items</h1>
+  
+  <div class="container">
+    <!-- Trial Items -->
+    <section class="items" id="trial-items">
+      <h2>Available Trials</h2>
+    </section>
+
+    <!-- Cart -->
+    <section class="cart">
+      <h2>Your Trial Cart</h2>
+      <div id="cart"></div>
+    </section>
+  </div>
+
+  <script>
+    /* ---------- Trial Items Data ---------- */
+    const trials = [
+      { id: 1, name: "Trial Tab", img: "tab.png" },
+      { id: 2, name: "Trial Smart watch", img: "watch.png" },
+      { id: 3, name: "Trial Headphones", img: "wireless .png" },
+      { id: 4, name: "Trial Watch", img: "pillow.png" }
+    ];
+    let cart = [];
+
+    /* ---------- Render Trial Items ---------- */
+    function renderTrials() {
+      const itemsDiv = document.getElementById("trial-items");
+      itemsDiv.innerHTML += trials.map(t => `
+        <div class="trial">
+          <img src="${t.img}" alt="${t.name}">
+          <h3>${t.name}</h3>
+          <button onclick="addToCart(${t.id})">Add to Cart</button>
+        </div>
+      `).join("");
+    }
+
+    /* ---------- Cart Functions ---------- */
+    function addToCart(id) {
+      const trial = trials.find(t => t.id === id);
+      const exists = cart.find(i => i.id === id);
+      if (!exists) cart.push(trial);
+      renderCart();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      renderCart();
+    }
+
+    /* ---------- Render Cart ---------- */
+    function renderCart() {
+      const cartDiv = document.getElementById("cart");
+      if (cart.length === 0) {
+        cartDiv.innerHTML = "<p>No trial items added yet.</p>";
+        return;
+      }
+      cartDiv.innerHTML = cart.map(item => `
+        <div class="cart-item">
+          <img src="${item.img}" alt="${item.name}">
+          <h4>${item.name}</h4>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+        </div>
+      `).join("");
+    }
+
+    /* ---------- Initialize ---------- */
+    renderTrials();
+    renderCart();
+  </script>
+
+</body>
+</html>

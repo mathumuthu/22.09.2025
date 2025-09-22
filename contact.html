@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us — Animated</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Floating bubbles background */
+    @keyframes float {
+      0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+      50%  { transform: translateY(-20px) scale(1.1); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: 0.6; }
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Glow effect for inputs */
+    .glow:focus {
+      outline: none;
+      border-color: yellowgreen;
+      box-shadow: 0 0 12px blue(250,204,21,0.7);
+    }
+
+    /* Button hover pulse */
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%     { transform: scale(1.05); }
+    }
+    .btn-animate:hover {
+      animation: pulse 0.6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 relative overflow-hidden">
+
+  <!-- Background bubbles -->
+  <div class="bubble w-20 h-20 top-10 left-12"></div>
+  <div class="bubble w-16 h-16 top-1/3 left-1/4" style="animation-delay:1s;"></div>
+  <div class="bubble w-24 h-24 bottom-20 right-10" style="animation-delay:2s;"></div>
+  <div class="bubble w-14 h-14 top-1/2 right-1/3" style="animation-delay:3s;"></div>
+
+  <!-- Content -->
+  <main class="relative z-10 min-h-screen flex items-center justify-center p-6">
+    <section class="w-full max-w-5xl bg-white/10 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-12">
+      
+      <!-- Heading -->
+      <div class="text-center mb-10">
+        <h1 class="text-4xl font-extrabold text-yellow-400">Contact Us</h1>
+        <p class="mt-2 text-gray-300">We’d love to hear from you. Fill out the form or reach us directly.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10">
+        
+        <!-- Contact Form -->
+        <form id="contactForm" class="space-y-5">
+          <div>
+            <label class="block text-sm mb-1">Name</label>
+            <input type="text" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 glow" placeholder="Your Name" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Email</label>
+            <input type="email" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 glow" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Message</label>
+            <textarea required rows="5" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 glow" placeholder="Write your message..."></textarea>
+          </div>
+          <button type="submit" class="btn-animate w-full bg-yellow-400 text-black font-bold py-3 rounded-lg shadow-lg hover:bg-yellow-300 transition">
+            Send Message
+          </button>
+        </form>
+
+        <!-- Contact Info + Map -->
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="bg-yellow-400 text-black p-3 rounded-full">📍</div>
+            <div>
+              <h3 class="font-semibold">Address</h3>
+              <p class="text-gray-300"> Stackly, chinna thirupathi salem <br/> </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="bg-yellow-400 text-black p-3 rounded-full">📞</div>
+            <div>
+              <h3 class="font-semibold">Phone</h3>
+              <p class="text-gray-300">+91 14765 43210</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="bg-yellow-400 text-black p-3 rounded-full">✉️</div>
+            <div>
+              <h3 class="font-semibold">Email</h3>
+              <p class="text-gray-300">support@thestackly.com</p>
+            </div>
+          </div>
+
+          <!-- Google Map -->
+          <div class="rounded-xl overflow-hidden shadow-lg">
+            <iframe class="w-full h-56" src="https://maps.google.com/maps?q=chennai&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Form submission animation
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert("✅ Thank you! Your message has been sent.");
+      form.reset();
+    });
+  </script>
+</body>
+</html>

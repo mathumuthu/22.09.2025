@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In / Sign Up</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+    body{
+      display:flex;justify-content:center;align-items:center;
+      min-height:100vh;background:linear-gradient(135deg,white,rgb(155, 207, 207));
+    }
+    .wrapper{
+      width:380px;background:white;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.2);
+      overflow:hidden;
+    }
+    .tabs{display:flex;cursor:pointer;}
+    .tabs div{
+      width:50%;padding:15px;text-align:center;font-weight:bold;
+      background:white;transition:0.3s;
+    }
+    .tabs .active{background:#2608ac;color:#fff;}
+    .form-box{padding:30px;display:none;}
+    .form-box.active{display:block;}
+    h2{text-align:center;margin-bottom:20px;color:#333;}
+    input{
+      width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;
+      border-radius:6px;outline:none;
+    }
+    button{
+      width:100%;padding:12px;margin-top:10px;
+      background:#2575fc;border:none;border-radius:6px;
+      color:#fff;font-size:16px;cursor:pointer;transition:0.3s;
+    }
+    button:hover{background:#1a5fd6;}
+    .message{margin-top:10px;text-align:center;font-size:14px;}
+    .success{color:green;} .error{color:red;}
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Tabs -->
+    <div class="tabs">
+      <div id="tab-signin" class="active">Sign In</div>
+      <div id="tab-signup">Sign Up</div>
+    </div>
+
+    <!-- Sign In -->
+    <div class="form-box active" id="signin-box">
+      <h2>Sign In</h2>
+      <input type="email" id="signin-email" placeholder="Email" required>
+      <input type="password" id="signin-password" placeholder="Password" required>
+      <button id="signin-btn">Sign In</button>
+      <div class="message" id="signin-msg"></div>
+    </div>
+
+    <!-- Sign Up -->
+    <div class="form-box" id="signup-box">
+      <h2>Sign Up</h2>
+      <input type="text" id="signup-name" placeholder="Full Name" required>
+      <input type="email" id="signup-email" placeholder="Email" required>
+      <input type="password" id="signup-password" placeholder="Password" required>
+      <button id="signup-btn">Sign Up</button>
+      <div class="message" id="signup-msg"></div>
+    </div>
+  </div>
+
+  <script>
+    const tabSignin = document.getElementById('tab-signin');
+    const tabSignup = document.getElementById('tab-signup');
+    const signinBox = document.getElementById('signin-box');
+    const signupBox = document.getElementById('signup-box');
+
+    // Switch tabs
+    tabSignin.addEventListener('click', ()=>{
+      tabSignin.classList.add('active');
+      tabSignup.classList.remove('active');
+      signinBox.classList.add('active');
+      signupBox.classList.remove('active');
+    });
+    tabSignup.addEventListener('click', ()=>{
+      tabSignup.classList.add('active');
+      tabSignin.classList.remove('active');
+      signupBox.classList.add('active');
+      signinBox.classList.remove('active');
+    });
+
+    // Sign Up
+    document.getElementById('signup-btn').addEventListener('click', ()=>{
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      if(users.find(u=>u.email===email)){
+        document.getElementById('signup-msg').innerHTML = "<p class='error'>Email already registered!</p>";
+        return;
+      }
+      users.push({name,email,password});
+      localStorage.setItem('users',JSON.stringify(users));
+      document.getElementById('signup-msg').innerHTML = "<p class='success'>Account created! Now Sign In.</p>";
+    });
+
+    // Sign In
+    document.getElementById('signin-btn').addEventListener('click', ()=>{
+      const email = document.getElementById('signin-email').value.trim();
+      const password = document.getElementById('signin-password').value;
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const user = users.find(u=>u.email===email && u.password===password);
+      if(user){
+        document.getElementById('signin-msg').innerHTML = `<p class='success'>Welcome back, ${user.name}!</p>`;
+        setTimeout(()=> alert("signin sucessfully.."),1000);
+      } else {
+        document.getElementById('signin-msg').innerHTML = "<p class='error'>Invalid email or password!</p>";
+      }
+    });
+  </script>
+</body>
+</html>

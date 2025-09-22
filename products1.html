@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products Landing - StacklyShopX</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: "Segoe UI", sans-serif; background:#f9f9f9; color:#333; line-height:1.6;}
+    a {text-decoration:none; color:inherit;}
+
+    /* Header */
+    header {
+      background:#222; color:white;
+      padding:15px 30px;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    header h1 {font-size:22px; color:#00c6ff;}
+    nav a {margin-left:20px; font-weight:bold; transition:0.3s;}
+    nav a:hover {color:#00c6ff;}
+
+    /* Hero */
+    .hero {
+      background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)), url('https://via.placeholder.com/1400x500.png?text=E-commerce+Banner') no-repeat center/cover;
+      color:white;
+      text-align:center;
+      padding:120px 20px;
+    }
+    .hero h2 {font-size:42px; margin-bottom:15px;}
+    .hero p {font-size:18px; margin-bottom:20px;}
+    .hero .btn {
+      padding:12px 20px;
+      background:#00c6ff;
+      border:none; border-radius:6px;
+      color:white; font-size:16px;
+      cursor:pointer; transition:0.3s;
+    }
+    .hero .btn:hover {background:#007bbf;}
+
+    /* Featured Product */
+    .featured {
+      display:flex; flex-wrap:wrap;
+      align-items:center; justify-content:center;
+      padding:60px 30px;
+      background:#fff;
+      gap:40px;
+    }
+    .featured img {
+      width:400px; max-width:100%;
+      border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    }
+    .featured-content {max-width:500px;}
+    .featured-content h3 {font-size:28px; margin-bottom:15px;}
+    .featured-content p {margin-bottom:20px; color:#555;}
+    .price {font-size:22px; font-weight:bold; color:#00c6ff; margin-bottom:15px;}
+    .btn-cart, .btn-buy {
+      padding:10px 16px; margin-right:10px;
+      border:none; border-radius:6px; font-weight:bold; cursor:pointer; transition:0.3s;
+    }
+    .btn-cart {background:#00c6ff; color:white;}
+    .btn-cart:hover {background:#007bbf;}
+    .btn-buy {background:#28a745; color:white;}
+    .btn-buy:hover {background:#1c7c31;}
+
+    /* Products Grid */
+    .products {
+      padding:60px 30px;
+      text-align:center;
+    }
+    .products h2 {font-size:32px; margin-bottom:40px;}
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .card {
+      background:#fff;
+      border-radius:12px;
+      padding:15px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition:0.3s;
+      text-align:center;
+    }
+    .card:hover {transform:translateY(-8px); box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+    .card img {width:100%; height:200px; object-fit:cover; border-radius:8px;}
+    .card h3 {margin:12px 0 6px;}
+    .card .price {font-size:18px; color:#00c6ff;}
+
+    /* Footer */
+    footer {
+      background:#222; color:#ccc;
+      text-align:center; padding:20px;
+      margin-top:40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>StacklyShopX</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products-landing.html">Products</a>
+      <a href="features.html">Features</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Discover Our Exclusive Collection</h2>
+    <p>Shop the latest electronics, fashion, and more at unbeatable prices.</p>
+    <button class="btn" onclick="document.querySelector('.products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+  </section>
+
+  <!-- Featured Product -->
+  <section class="featured">
+    <img src="https://via.placeholder.com/400x300.png?text=Featured+Laptop" alt="Featured Product">
+    <div class="featured-content">
+      <h3>Ultra Gaming Laptop</h3>
+      <p>Experience top-notch performance with our latest gaming laptop powered by Intel i9 and RTX graphics.</p>
+      <p class="price">₹89,999</p>
+      <button class="btn-cart" onclick="addToCart('Ultra Gaming Laptop',89999)">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Ultra Gaming Laptop',89999)">Buy Now</button>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="products">
+    <h2>Our Products</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200.png?text=Smartphone" alt="Smartphone">
+        <h3>Smartphone X</h3>
+        <p class="price">₹29,999</p>
+        <button class="btn-cart" onclick="addToCart('Smartphone X',29999)">Add to Cart</button>
+        <button class="btn-buy" onclick="buyNow('Smartphone X',29999)">Buy Now</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200.png?text=Camera" alt="Camera">
+        <h3>4K DSLR Camera</h3>
+        <p class="price">₹44,999</p>
+        <button class="btn-cart" onclick="addToCart('4K DSLR Camera',44999)">Add to Cart</button>
+        <button class="btn-buy" onclick="buyNow('4K DSLR Camera',44999)">Buy Now</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200.png?text=Smartwatch" alt="Smartwatch">
+        <h3>Smartwatch Z</h3>
+        <p class="price">₹9,499</p>
+        <button class="btn-cart" onclick="addToCart('Smartwatch Z',9499)">Add to Cart</button>
+        <button class="btn-buy" onclick="buyNow('Smartwatch Z',9499)">Buy Now</button>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200.png?text=Tablet" alt="Tablet">
+        <h3>Tablet Pro</h3>
+        <p class="price">₹19,999</p>
+        <button class="btn-cart" onclick="addToCart('Tablet Pro',19999)">Add to Cart</button>
+        <button class="btn-buy" onclick="buyNow('Tablet Pro',19999)">Buy Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 StacklyShopX. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(name + " added to cart!");
+    }
+    function buyNow(name, price) {
+      let cart = [{ name, price }];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      window.location.href = "cart.html";
+    }
+  </script>
+</body>
+</html>

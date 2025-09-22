@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Trial Registration</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f2f5;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #007bff, #00c6ff);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 40px auto;
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    /* Trial Items */
+    .items {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 12px;
+    }
+
+    .card p {
+      margin: 0 12px 15px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .card button {
+      background: #007bff;
+      color: white;
+      border: none;
+      margin: 0 12px 15px;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      background: #0056b3;
+    }
+
+    /* Form Section */
+    .form-box {
+      flex: 1;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 300px;
+      align-self: flex-start;
+    }
+
+    .form-box h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .form-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .form-box button:hover {
+      background: #218838;
+    }
+
+    .success {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎁 Free Trial Registration</h1>
+    <p>Select a product and register for a 7-day free trial</p>
+  </header>
+
+  <div class="container">
+
+    <!-- Trial Items -->
+    <div class="items">
+      <div class="card">
+        <img src="phone.png" alt="Phone">
+        <h3>Smartphone</h3>
+        <p>Experience the latest smartphone free for 7 days.</p>
+        <button onclick="selectItem('Smartphone')">Select</button>
+      </div>
+      <div class="card">
+        <img src="lap.png" alt="Laptop">
+        <h3>Laptop</h3>
+        <p>Boost your productivity with a free laptop trial.</p>
+        <button onclick="selectItem('Laptop')">Select</button>
+      </div>
+      <div class="card">
+        <img src="head2.png" alt="Headphones">
+        <h3>Headphones</h3>
+        <p>Immerse yourself in sound, free for 7 days.</p>
+        <button onclick="selectItem('Headphones')">Select</button>
+      </div>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="form-box">
+      <h2 id="formTitle">Register for Trial</h2>
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" id="email" placeholder="Your Email">
+      <input type="text" id="address" placeholder="Your Address">
+      <button onclick="submitForm()">Register</button>
+      <p id="successMsg" class="success"></p>
+    </div>
+
+  </div>
+
+  <script>
+    let selectedItem = "";
+
+    function selectItem(item) {
+      selectedItem = item;
+      document.getElementById("formTitle").textContent = "Register for " + item + " Trial";
+      document.getElementById("successMsg").textContent = "";
+    }
+
+    function submitForm() {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let address = document.getElementById("address").value;
+
+      if (!selectedItem) {
+        alert("Please select a trial item first.");
+        return;
+      }
+
+      if (name && email && address) {
+        document.getElementById("successMsg").textContent =
+          "✅ " + name + ", you have registered for the " + selectedItem + " trial!";
+      } else {
+        alert("Please fill in all fields.");
+      }
+    }
+  </script>
+
+</body>
+</html>

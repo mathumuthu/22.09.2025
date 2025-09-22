@@ -1,0 +1,141 @@
+<!-- 🌟 Get in Touch Section -->
+<section id="contact" class="get-in-touch">
+  <div class="contact-container">
+    <h2>Get in Touch</h2>
+    <p>We’d love to hear from you! Fill out the form below or reach us directly.</p>
+
+    <div class="contact-content">
+      <!-- Contact Form -->
+      <form class="contact-form" id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Contact Info</h3>
+        <p><strong>📍 Address:</strong> chinna thirupathi salem, City</p>
+        <p><strong>📞 Phone:</strong> +91 98765 43210</p>
+        <p><strong>📧 Email:</strong> stackly@gmail.com</p>
+
+        <!-- <div class="social-links"> -->
+          <!-- <a href="#">🌐 Facebook</a> -->
+          <!-- <a href="#">🐦 Twitter</a> -->
+          <!-- <a href="#">📸 Instagram</a> -->
+          <!-- <a href="#">💼 LinkedIn</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🌟 CSS Styling -->
+<style>
+.get-in-touch {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, skyblue, #2575fc);
+  color: #fff;
+  text-align: center;
+}
+
+.get-in-touch h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.get-in-touch p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.contact-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  padding: 12px;
+  background: #fff;
+  color: #2575fc;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #f0f0f0;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 280px;
+  text-align: left;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.contact-info h3 {
+  margin-bottom: 15px;
+}
+
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.social-links a {
+  background: #fff;
+  color: #2575fc;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  background: #2575fc;
+  color: #fff;
+}
+</style>
+
+<!-- 🌟 JavaScript -->
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("✅ Thank you for reaching out! We’ll get back to you soon.");
+  this.reset();
+});
+</script>

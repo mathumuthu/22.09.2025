@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product - StacklyShopX</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fb;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #111;
+      color: #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .cart {
+      position: relative;
+      font-size: 24px;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+    }
+    .cart span {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: crimson;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
+
+    /* Product section */
+    .product-page {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+    }
+
+    .product-image {
+      flex: 1 1 350px;
+      text-align: center;
+    }
+    .product-image img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transition: transform .3s ease;
+    }
+    .product-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      flex: 1 1 350px;
+      max-width: 500px;
+    }
+    .product-info h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .product-info p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #28a745;
+      margin: 15px 0;
+      animation: blink 1s infinite;
+    }
+
+    button {
+      background: #ff6b6b;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      animation: blink 1.5s infinite;
+    }
+    button:hover {
+      background: #ff4757;
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.5);
+    }
+
+    /* 🔥 Blinking animation */
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    @media(max-width:768px){
+      .product-page {flex-direction: column;}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>StacklyShopX</h1>
+    <a href="cart.html" class="cart">🛒 <span id="cart-count">0</span></a>
+  </header>
+
+  <section class="product-page">
+    <div class="product-image">
+      <img src="pic10.png" alt="Laptop">
+    </div>
+    <div class="product-info">
+      <h2>Gaming Laptop</h2>
+      <p>
+        Powerful gaming laptop with RTX graphics, i7 processor, and 16GB RAM.  
+        Perfect for heavy tasks, games, and creative work.
+      </p>
+      <div class="price">🔥 Limited Offer: ₹79,999</div>
+      <button onclick="addToCart()">Add to Cart</button>
+    </div>
+  <script>
+    // Load cart count from localStorage
+    let cartCount = localStorage.getItem("cartCount") || 0;
+    document.getElementById("cart-count").textContent = cartCount;
+
+    function addToCart() {
+      // Get cart data
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Example product object
+      let product = {
+        name: "Gaming Laptop",
+        price: 79999,
+        img: "pic10.png"
+      };
+
+      // Add to cart
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      // Update cart count
+      cartCount++;
+      localStorage.setItem("cartCount", cartCount);
+      document.getElementById("cart-count").textContent = cartCount;
+
+      alert("✅ Product added to cart!");
+    }
+  </script>
+ 
+
+</body>
+</html>

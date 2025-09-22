@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Not Found</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background: #f9f9f9;
+      color: #222;
+      transition: 0.3s;
+    }
+
+    .container {
+      max-width: 500px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 6rem;
+      color: #2f1385;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 15px 0 25px;
+      color: #555;
+    }
+
+    a {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #0d237e;
+      color: #fff;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      background: #e60000;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background: #121212;
+      color: #f1f1f1;
+    }
+
+    body.dark p {
+      color: #bbb;
+    }
+
+    .toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #333;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .toggle:hover {
+      background: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle" onclick="darkMode()">🌙 Dark</div>
+
+  <div class="container">
+    <h1>404</h1>
+    <p>Sorry, the page you are looking for cannot be found.</p>
+    <a href="home2.html">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    function darkMode() {
+      document.body.classList.toggle("dark");
+      let btn = document.querySelector(".toggle");
+      btn.textContent = document.body.classList.contains("dark") ? "☀️ Light" : "🌙 Dark";
+    }
+  </script>
+</body>
+</html>

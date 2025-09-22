@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly|Blog</title>
+  <style>
+    /* Global Reset */
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+    body{background:#f4f7fa;color:#333;line-height:1.6;}
+
+    /* Header */
+    header{
+      background:#111;
+      color:#fff;
+      padding:1rem 2rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    header h1{font-size:1.8rem;}
+    nav a{
+      color:#fff;
+      margin:0 10px;
+      text-decoration:none;
+      font-weight:500;
+      transition:color 0.3s;
+    }
+    nav a:hover{color:#ff6600;}
+
+    /* Blog Section */
+    .blog-section{
+      max-width:1200px;
+      margin:auto;
+      padding:2rem;
+    }
+    .blog-section h2{
+      text-align:center;
+      font-size:2rem;
+      margin-bottom:2rem;
+      position:relative;
+      display:inline-block;
+    }
+    .blog-section h2::after{
+      content:"";
+      display:block;
+      width:60%;
+      height:3px;
+      background:#ff6600;
+      margin:0.5rem auto 0;
+    }
+    .blog-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:1.5rem;
+    }
+
+    /* Blog Card */
+    .blog-card{
+      background:#fff;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 4px 8px rgba(0,0,0,0.1);
+      transition:transform 0.3s,box-shadow 0.3s;
+    }
+    .blog-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 10px 18px rgba(0,0,0,0.15);
+    }
+    .blog-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+    .blog-card .content{
+      padding:1rem 1.2rem;
+    }
+    .blog-card h3{
+      font-size:1.2rem;
+      margin-bottom:0.5rem;
+    }
+    .blog-card p{
+      color:#555;
+      font-size:0.95rem;
+    }
+    .blog-card a{
+      display:inline-block;
+      margin-top:1rem;
+      color:#ff6600;
+      font-weight:600;
+      text-decoration:none;
+      transition:color 0.3s;
+    }
+    .blog-card a:hover{color:#e65100;text-decoration:underline;}
+
+    /* Footer */
+    footer{
+      background:#111;
+      color:#fff;
+      text-align:center;
+      padding:1rem;
+      margin-top:2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    
+    <h1>Stackly</h1>
+    
+    <!-- <nav> -->
+      <!-- <a href="index.html">Home</a> -->
+      <!-- <a href="services.html">Services</a> -->
+      <!-- <a href="blog.html">Blog</a> -->
+      <!-- <a href="contact.html">Contact</a> -->
+    </nav>
+  </header>
+
+  <!-- Blog Section -->
+  <section class="blog-section">
+    <h2>Latest Blog Posts</h2>
+    <div class="blog-container">
+
+      <!-- Blog Card 1 -->
+      <div class="blog-card">
+        <img src="pic4.png" alt="Blog Post">
+        <div class="content">
+          <h3>Top Trends in Online Shopping 2025</h3>
+          <p>Discover the latest e-commerce trends shaping the way customers shop online this year.</p>
+          <a href="
+https://www.shopify.com">Read More →</a>
+        </div>
+      </div>
+
+      <!-- Blog Card 2 -->
+      <div class="blog-card">
+        <img src="pic5.png" alt="Blog Post">
+        <div class="content">
+          <h3>How Fast Delivery Builds Trust</h3>
+          <p>Speed matters! Learn how quick shipping can improve customer satisfaction and loyalty.</p>
+          <a href="
+https://www.shopify.com">Read More →</a>
+        </div>
+      </div>
+
+      <!-- Blog Card 3 -->
+      <div class="blog-card">
+        <img src="pic7.png" alt="Blog Post">
+        <div class="content">
+          <h3>Maximizing Sales with Discounts</h3>
+          <p>Explore smart ways to use offers and discounts without hurting your business profit.</p>
+          <a href="
+https://www.shopify.com">Read More →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="pic6.png" alt="Blog Post">
+        <div class="content">
+          <h3>Checkout that converts 15% better</h3>
+          <p>checkout converts a whole 15% better on average than other commerce platforms. .</p>
+          <a href="
+https://www.shopify.com">Read More →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="pic9.png" alt="Blog Post">
+        <div class="content">
+          <h3>Health and wellness products</h3>
+          <p>worldwide wellness market has grown steadily over the past several years. By 2025, it’s projected to reach a whopping $6.99 trillion</p>
+          <a href="
+https://www.shopify.com">Read More →</a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <img src="pic8.png" alt="Blog Post">
+        <div class="content">
+          <h3>consider dropshipping</h3>
+          <p>you can select from hundreds of products and outsource printing and fulfillment to your supplier..</p>
+          <a href="
+https://www.shopify.com">Read More →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- <footer> -->
+    <!-- <p>© 2025 StacklyShopX. All Rights Reserved.</p> -->
+  <!-- </footer> -->
+
+</body>
+</html>

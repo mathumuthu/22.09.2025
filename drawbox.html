@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home1 with Home2 Cursor Preview</title>
+  <style>
+    :root{
+      --bg:#0f172a; --card:#0b1220; --accent:#7c3aed; --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent),
+                  linear-gradient(180deg, #071020 0%, #0f172a 100%);
+      color:#e6eef8;
+      min-height:100vh;
+    }
+
+    /* Header / Navigation */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:20px 36px;
+      position:sticky;
+      top:0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      backdrop-filter: blur(6px);
+      z-index:50;
+    }
+    .brand{font-weight:700; letter-spacing:0.6px; display:flex; gap:10px; align-items:center;}
+    .brand .logo{
+      width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#06b6d4);
+      display:inline-block; box-shadow: 0 6px 20px rgba(124,58,237,0.14);
+    }
+    nav{display:flex; gap:18px; align-items:center;}
+    nav a{
+      color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:8px;
+      transition: all .18s ease; font-weight:600; font-size:14px;
+    }
+    nav a:hover, nav a:focus{ color: white; background: var(--glass); transform: translateY(-2px); }
+
+    /* Main home1 layout */
+    .container{ padding:56px 36px; max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1fr 380px; gap:32px; align-items:start;}
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:28px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+    }
+    .hero h1{ margin:0 0 12px 0; font-size:32px; line-height:1.02; color:#fff; }
+    .hero p{ margin:0 0 18px 0; color:var(--muted); }
+
+    .cards{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+      padding:14px; border-radius:10px; min-width:220px; box-shadow:0 6px 18px rgba(2,6,23,0.5);
+    }
+
+    /* Right column (sidebar) */
+    aside{
+      height:100%;
+      padding:18px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+
+    /* The preview popup that follows cursor */
+    .preview {
+      position:fixed;
+      pointer-events:none; /* doesn't block mouse */
+      transform: translate(-10px, -10px);
+      min-width:300px;
+      max-width:420px;
+      z-index:9999;
+      display:none;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow: 0 12px 40px rgba(2,6,23,0.7);
+      border:1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      backdrop-filter: blur(8px);
+      transition: transform .12s ease, opacity .12s ease;
+      opacity:0;
+    }
+    .preview.visible{ display:block; opacity:1; transform: translate(6px, 6px) scale(1); pointer-events:none; }
+    .preview-inner { padding:12px; font-size:13px; color:var(--muted); }
+    .preview .preview-hero { font-weight:700; color:#fff; margin-bottom:8px; }
+    .preview .preview-sub { font-size:12px; color:var(--muted); margin-bottom:6px; }
+
+    /* small visual cue for code view inside preview (optional) */
+    .code-sample{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:11px;
+      background: rgba(0,0,0,0.18);
+      padding:8px;
+      border-radius:6px;
+      color:#e6eef8;
+      overflow:auto;
+      max-height:140px;
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .container{ grid-template-columns:1fr; padding:28px 18px; }
+      nav{ gap:10px; }
+      .preview{ display:none !important; } /* hide cursor preview on small screens */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <span>StacklyShopX</span>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <!-- Home1 link shows a live preview of Home2 when hovered -->
+      <a href="#" id="home1-link" data-preview="home2">Home 1</a>
+      <a href="#" id="home2-link">Home 2</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <!-- HOME 1 (main visible page) -->
+    <section class="hero" id="home1">
+      <h1>Home Page 1 — Modern Services Landing</h1>
+      <p>Welcome to your Home Page 1. This is the main content. Hover the "Home 1" nav item to preview Home Page 2 next to your cursor.</p>
+
+      <div class="cards">
+        <div class="card">
+          <h3 style="margin:0 0 8px 0">Featured Product</h3>
+          <p style="margin:0; color:var(--muted)">Beautiful e-commerce card with add-to-cart and small animation.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px 0">Latest Deals</h3>
+          <p style="margin:0; color:var(--muted)">Deal of the day, discounts and countdown.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside>
+      <h4 style="margin-top:0">Quick Panel</h4>
+      <p style="color:var(--muted); margin-bottom:12px">Profile — Offers — Notifications</p>
+
+      <div style="margin-top:18px">
+        <strong style="display:block; margin-bottom:8px">Preview toggle</strong>
+        <p style="margin:0 0 8px 0; color:var(--muted)">You can edit Home2 markup in the hidden container below. The preview uses that content.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Hidden Home2 content source (used to populate preview) -->
+  <template id="home2-template">
+    <div style="padding:8px;">
+      <div class="preview-hero">Home Page 2 — Product Landing</div>
+      <div class="preview-sub">A compact preview of your Home 2 layout: hero, features and CTA.</div>
+
+      <div style="display:flex; gap:8px; margin-bottom:8px;">
+        <div style="flex:1; padding:10px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));">
+          <strong style="display:block">Hero</strong>
+          <small style="color:var(--muted);">Short slogan + CTA</small>
+        </div>
+        <div style="width:84px; padding:10px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); text-align:center;">
+          <strong>Deal</strong><br><small style="color:var(--muted)">-30%</small>
+        </div>
+      </div>
+
+      <div class="code-sample" aria-hidden="false">
+        &lt;section class="hero"&gt;Hero title &amp; CTA&lt;/section&gt;
+        &lt;section class="features"&gt;Feature cards&lt;/section&gt;
+      </div>
+    </div>
+  </template>
+
+  <!-- Floating preview element -->
+  <div id="cursor-preview" class="preview" role="dialog" aria-hidden="true">
+    <div class="preview-inner" id="preview-inner"></div>
+  </div>
+
+  <script>
+    (function(){
+      const link = document.getElementById('home1-link');
+      const preview = document.getElementById('cursor-preview');
+      const previewInner = document.getElementById('preview-inner');
+      const tpl = document.getElementById('home2-template');
+
+      // populate preview content from template
+      function populatePreview(){
+        previewInner.innerHTML = '';
+        previewInner.appendChild(tpl.content.cloneNode(true));
+      }
+      populatePreview();
+
+      // Show preview on hover and follow cursor
+      let hovering = false;
+      function showPreview(ev){
+        hovering = true;
+        preview.classList.add('visible');
+        preview.setAttribute('aria-hidden','false');
+        updatePosition(ev);
+      }
+      function hidePreview(){
+        hovering = false;
+        preview.classList.remove('visible');
+        preview.setAttribute('aria-hidden','true');
+      }
+      function updatePosition(ev){
+        // position with offset, but don't overflow viewport edges
+        const padding = 12;
+        const offsetX = 18;
+        const offsetY = 18;
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const rect = preview.getBoundingClientRect();
+        let x = ev.clientX + offsetX;
+        let y = ev.clientY + offsetY;
+
+        // if overflow right, flip to left of cursor
+        if (x + rect.width + padding > vw) x = ev.clientX - rect.width - offsetX;
+        // if overflow bottom, shift up
+        if (y + rect.height + padding > vh) y = ev.clientY - rect.height - offsetY;
+
+        // small clamp
+        x = Math.max(padding, x);
+        y = Math.max(padding, y);
+
+        preview.style.left = x + 'px';
+        preview.style.top = y + 'px';
+      }
+
+      // Mouse events
+      link.addEventListener('mouseenter', (e) => {
+        populatePreview();
+        showPreview(e);
+      });
+      link.addEventListener('mousemove', (e) => {
+        if (!hovering) return;
+        updatePosition(e);
+      });
+      link.addEventListener('mouseleave', hidePreview);
+
+      // Also support keyboard focus (for accessibility)
+      link.addEventListener('focus', (e) => {
+        populatePreview();
+        // Show preview near the link itself
+        const rect = link.getBoundingClientRect();
+        const fakeEvent = { clientX: rect.right, clientY: rect.top + rect.height/2 };
+        showPreview(fakeEvent);
+      });
+      link.addEventListener('blur', hidePreview);
+
+      // Hide on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') hidePreview();
+      });
+
+      // Optional: clicking Home 2 nav opens a sample alert
+      document.getElementById('home2-link').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Open Home 2 in a full page — replace with your routing/navigation.');
+      });
+
+      // Prevent preview from blocking pointer (pointer-events:none), but allow toggles if needed.
+    })();
+  </script>
+</body>
+</html>

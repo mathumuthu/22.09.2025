@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stackly-Services</title>
+  <style>
+    /* 🌙 Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: whitesmoke;
+      color: #2c1d69;
+      overflow-x: hidden;
+    }
+
+    /* 🔹 Header */
+    header {
+      padding: 20px;
+      text-align: center;
+      background:wheat
+    }
+    header h1 {
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* ✨ Underline Animation */
+    header h1::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 3px;
+      background: #ff9800;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+    header h1:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* 🔹 Typing Effect */
+    .typing {
+      color: #242fa9;
+      font-size: 1.2rem;
+      white-space: nowrap;
+      border-right: 2px solid #051d46;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(30, end) infinite alternate;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 18ch; }
+    }
+
+    /* 🔹 Service Section */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .service-card {
+      background: whitesmoke;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    .service-card img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      animation: zoomInOut 3s infinite ease-in-out; /* zoom animation */
+    }
+
+    .service-card h3 {
+      margin: 10px 0;
+      font-size: 1.3rem;
+      color: #ff9800;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0px 5px 20px rgba(255, 152, 0, 0.5);
+    }
+
+    /* ✨ Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomInOut {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Bounce */
+    .bounce {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: whitesmoke;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔹 Header -->
+  <header>
+    <h1>Our Services - Stackly</h1>
+    
+    <p class="typing">We provide the best solutions 🚀</p>
+  </header>
+
+  <!-- 🔹 Services Section -->
+  <section class="services">
+    <div class="service-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="E-commerce" class="bounce">
+      <h3>E-Commerce Solutions</h3>
+      <p>We build powerful and modern online stores with seamless shopping experience.</p>
+    </div>
+    <div class="service-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Web Design">
+      <h3>Fast delivery</h3>
+      <p>Nationwide doorstep delivery within 2–5 business days.
+        Same-day/next-day delivery in select cities.</p>
+    </div>
+    <div class="service-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="SEO">
+      <h3>Customer support</h3>
+      <p>Boost your business visibility with advanced SEO and digital marketing.</p>
+    </div>
+    <div class="service-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Support">
+      <h3>24/7 Support</h3>
+      <p>24/7 Availability – Connect with us anytime via chat or email.
+
+Multi-Channel Support – Phone, email, live chat, and WhatsApp..</p>
+    </div>
+    <div class="service-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1041/1041921.png" alt="Support">
+      <h3>cash on Delivery</h3>
+      <p>Safe & Reliable – Inspect your package before making the payment.</p>
+    </div>
+   
+  </section>
+
+  <!-- 🔹 Footer -->
+  <!-- <footer> -->
+    <!-- <p>© 2025 StacklyShopX | All Rights Reserved</p> -->
+  </footer>
+
+  <!-- JS to trigger fade-in when scrolling -->
+  <script>
+    const cards = document.querySelectorAll('.service-card');
+    window.addEventListener('scroll', () => {
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          card.style.opacity = "1";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

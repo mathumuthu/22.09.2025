@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown Example</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    nav {
+      background: #2575fc;
+      padding: 10px 20px;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      position: relative;
+    }
+    nav ul li a {
+      color: white;
+      padding: 12px 18px;
+      text-decoration: none;
+      display: block;
+    }
+    nav ul li a:hover {
+      background: #185adb;
+      border-radius: 6px;
+    }
+
+    /* Dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 45px;
+      left: 0;
+      background: #fff;
+      min-width: 180px;
+      border-radius: 6px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background: #f1f1f1;
+    }
+    /* Show dropdown on hover */
+    nav ul li:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li>
+        <a href="#">Home ▼</a>
+        <div class="dropdown-content">
+          <a href="home1.html">Home Page 1</a>
+          <a href="home2.html">Home Page 2</a>
+        </div>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Deal of the Day — Animated</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* extra animations & effects */
+    @keyframes shimmer {
+      0% { transform: translateX(-120%); }
+      100% { transform: translateX(120%); }
+    }
+    .shimmer::after{
+      content: "";
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+      transform: translateX(-120%);
+      animation: shimmer 1.6s linear infinite;
+      pointer-events:none;
+      mix-blend-mode: overlay;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.95); opacity: 0.7; }
+      50%{ transform: scale(1.02); opacity: 1; }
+      100%{ transform: scale(1); opacity: 1; }
+    }
+
+    .pop { animation: pop .6s ease both; }
+
+    /* soft glowing border */
+    .glow {
+      box-shadow: 0 8px 30px rgba(253, 224, 71, .12), inset 0 0 20px rgba(253,224,71,.03);
+    }
+
+    /* stock progress animation */
+    @keyframes progressAnim {
+      from { width: 0%; }
+      to { width: var(--progress); }
+    }
+    .progress-fill {
+      animation: progressAnim 1.2s ease forwards;
+    }
+
+    /* small decorative sparkle */
+    .sparkle {
+      position: absolute; width:8px; height:8px; border-radius:50%;
+      background: radial-gradient(circle at 40% 30%, #fff 0, #ffd54a 40%, #ffb300 100%);
+      filter: blur(.2px);
+      transform: translate(-50%,-50%);
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
+
+  <main class="min-h-screen flex items-center justify-center p-6">
+    <section class="w-full max-w-4xl">
+      <!-- header -->
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">🔥 Deal of the Day</h2>
+        <div class="flex items-center gap-3">
+          <div id="cart" class="relative">
+            <button id="cartBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/80 dark:bg-gray-800/70 glow shadow-sm">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 6M7 13l-2 6m12-6l2 6M9 21a1 1 0 11-2 0 1 1 0 012 0zm8 0a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
+              <span id="cartCount" class="font-semibold">0</span>
+            </button>
+            <!-- bounce animation when added -->
+          </div>
+          <div class="text-sm text-gray-500 dark:text-gray-400">Limited time · Free returns</div>
+        </div>
+      </div>
+
+      <!-- card -->
+      <div class="relative bg-white/80 dark:bg-gray-800/60 rounded-2xl p-4 md:p-6 overflow-hidden shadow-lg shimmer">
+        <!-- decorative sparkles -->
+        <div class="sparkle" style="top:10%; left:12%;"></div>
+        <div class="sparkle" style="top:25%; left:85%; width:6px; height:6px; opacity:.8;"></div>
+
+        <div class="md:flex gap-6 items-center">
+          <!-- image -->
+          <div class="md:w-1/3 w-full flex-shrink-0">
+            <div class="relative rounded-xl overflow-hidden">
+              <img id="dealImg" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop" alt="Deal product" class="w-full h-56 md:h-64 object-cover pop">
+              <div class="absolute top-3 left-3 bg-yellow-400/95 text-gray-900 px-3 py-1 rounded-full text-xs font-bold">-45%</div>
+            </div>
+          </div>
+
+          <!-- details -->
+          <div class="md:flex-1 mt-4 md:mt-0">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-lg md:text-2xl font-bold">Nike shoes</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">These modern, comfortable style sneakers are designed to offer both cutting-edge fashion and superior comfort.</p>
+              </div>
+              <div class="text-right">
+                <div class="text-sm text-gray-500 line-through">₹9,999</div>
+                <div class="text-2xl font-extrabold">₹5,499</div>
+                <div class="text-xs text-green-600 font-semibold mt-1">You save ₹4,500</div>
+              </div>
+            </div>
+
+            <!-- countdown -->
+            <div class="mt-4 flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex items-center gap-3">
+                <div class="bg-red-600 text-white px-3 py-2 rounded-lg font-mono text-xs shadow">Ends in</div>
+                <div id="countdown" class="flex gap-2 text-sm font-mono text-gray-800 dark:text-gray-100">
+                  <div class="p-2 bg-white/90 dark:bg-gray-700/50 rounded-lg min-w-[56px] text-center">
+                    <div id="cdDays" class="text-xs text-gray-500">00</div>
+                    <div class="text-base font-semibold">00d</div>
+                  </div>
+                  <div class="p-2 bg-white/90 dark:bg-gray-700/50 rounded-lg min-w-[56px] text-center">
+                    <div id="cdHours" class="text-xs text-gray-500">00</div>
+                    <div class="text-base font-semibold">00h</div>
+                  </div>
+                  <div class="p-2 bg-white/90 dark:bg-gray-700/50 rounded-lg min-w-[56px] text-center">
+                    <div id="cdMins" class="text-xs text-gray-500">00</div>
+                    <div class="text-base font-semibold">00m</div>
+                  </div>
+                  <div class="p-2 bg-white/90 dark:bg-gray-700/50 rounded-lg min-w-[56px] text-center">
+                    <div id="cdSecs" class="text-xs text-gray-500">00</div>
+                    <div class="text-base font-semibold">00s</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- stock + progress -->
+              <div class="flex-1">
+                <div class="text-xs text-gray-500 mb-2">Stock left: <span id="stockCount">24</span> / 100</div>
+                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                  <div id="progress" class="h-3 rounded-full bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 progress-fill" style="width:0%; --progress: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- actions -->
+            <div class="mt-5 flex flex-col sm:flex-row sm:items-center gap-3">
+              <button id="addBtn" class="relative inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-400 text-black font-semibold shadow-lg transform transition-all hover:scale-105 active:scale-95">
+                <span class="mr-2">Add to Cart</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 6M7 13l-2 6m12-6l2 6"/></svg>
+              </button>
+
+              <button id="buyBtn" class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-yellow-400 text-yellow-400 font-semibold hover:bg-yellow-50/60 dark:hover:bg-yellow-900/30 transition">Buy Now</button>
+
+              <div id="dealBadge" class="ml-auto text-xs px-3 py-2 rounded-full bg-red-50 text-red-700 font-semibold hidden sm:inline-block">Hot • Best Seller</div>
+            </div>
+
+            <p class="text-xs text-gray-500 mt-4">Offer valid while stocks last. Prices inclusive of taxes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- small footer -->
+      <div class="mt-4 text-xs text-gray-500 dark:text-gray-400 text-right">Tip: click <em>Buy Now</em> to jump to checkout (demo).</div>
+    </section>
+  </main>
+
+  <script>
+    // ---------- Config ----------
+    const TOTAL_STOCK = 100;
+    let currentStock = 24; // starting stock
+    const CART = { count: 0 };
+
+    // Countdown: 24 hours from page load
+    const dealEndsAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+
+    // Elements
+    const cdDays = document.getElementById('cdDays');
+    const cdHours = document.getElementById('cdHours');
+    const cdMins = document.getElementById('cdMins');
+    const cdSecs = document.getElementById('cdSecs');
+    const stockCount = document.getElementById('stockCount');
+    const progress = document.getElementById('progress');
+    const progressContainer = progress.parentElement;
+    const addBtn = document.getElementById('addBtn');
+    const cartCount = document.getElementById('cartCount');
+    const cartBtn = document.getElementById('cartBtn');
+    const dealBadge = document.getElementById('dealBadge');
+
+    // initialize
+    function updateStockUI() {
+      stockCount.textContent = currentStock;
+      const pct = Math.max(0, Math.min(100, Math.round((currentStock / TOTAL_STOCK) * 100)));
+      progress.style.width = pct + '%';
+      progress.style.setProperty('--progress', pct + '%');
+      if (pct <= 20) {
+        progress.classList.add('bg-red-500');
+        dealBadge.classList.remove('hidden');
+      } else {
+        progress.classList.remove('bg-red-500');
+      }
+    }
+    updateStockUI();
+
+    // countdown tick
+    function tick() {
+      const now = Date.now();
+      let diff = Math.max(0, dealEndsAt - now);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * (1000 * 60 * 60 * 24);
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * (1000 * 60 * 60);
+      const mins = Math.floor(diff / (1000 * 60));
+      diff -= mins * (1000 * 60);
+      const secs = Math.floor(diff / 1000);
+
+      cdDays.textContent = String(days).padStart(2, '0');
+      cdHours.textContent = String(hours).padStart(2, '0');
+      cdMins.textContent = String(mins).padStart(2, '0');
+      cdSecs.textContent = String(secs).padStart(2, '0');
+
+      if (dealEndsAt - now <= 0) {
+        // expired
+        cdDays.parentElement.parentElement.innerHTML = '<div class="text-sm font-semibold text-gray-600 dark:text-gray-300">Deal expired</div>';
+        addBtn.disabled = true;
+        addBtn.classList.add('opacity-50','pointer-events-none');
+        clearInterval(timerInterval);
+      }
+    }
+    const timerInterval = setInterval(tick, 1000);
+    tick();
+
+    // Add to cart interaction
+    function bounceCart() {
+      cartBtn.animate([
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(-6px)' },
+        { transform: 'translateY(0)' }
+      ], { duration: 350, easing: 'cubic-bezier(.2,.8,.2,1)'});
+    }
+
+    addBtn.addEventListener('click', () => {
+      if (currentStock <= 0) {
+        addBtn.innerText = 'Sold out';
+        addBtn.classList.add('opacity-60','pointer-events-none');
+        return;
+      }
+      CART.count += 1;
+      cartCount.textContent = CART.count;
+
+      // visual feedback
+      addBtn.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(0.98)' },
+        { transform: 'scale(1.03)' },
+        { transform: 'scale(1)' }
+      ], { duration: 360, easing: 'ease-out' });
+
+      // sparkle effect (temporary)
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.top = (Math.random()*70 + 10) + '%';
+      sparkle.style.left = (Math.random()*70 + 15) + '%';
+      document.body.appendChild(sparkle);
+      setTimeout(()=> sparkle.remove(), 700);
+
+      // update stock
+      currentStock = Math.max(0, currentStock - 1);
+      updateStockUI();
+
+      bounceCart();
+    });
+
+    // demo Buy Now
+    document.getElementById('buyBtn').addEventListener('click', () => {
+      alert('Demo: proceed to checkout (not implemented).');
+    });
+
+    // small keyboard shortcut to simulate purchases (press "p")
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'p') {
+        addBtn.click();
+      }
+    });
+
+    // accessibility: add focus outlines
+    document.querySelectorAll('button').forEach(b=>{
+      b.addEventListener('focus', ()=> b.classList.add('ring','ring-yellow-300','ring-offset-2'));
+      b.addEventListener('blur',  ()=> b.classList.remove('ring','ring-yellow-300','ring-offset-2'));
+    });
+  </script>
+</body>
+</html>
