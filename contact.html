@@ -1,206 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="home2.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Stackly</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
 
-  
+/* ---------- GLOBAL ---------- */
+body {
+  margin: 0;
+  padding: 0;
+  background: #f7f7f7;
+  font-family: 'Inter', sans-serif;
+  color: #111827;
+}
+
+/* ---------- PAGE HEADER ---------- */
+.contact-header {
+  background: linear-gradient(to right, #1d4ed8, #3b82f6);
+  padding: 70px 20px;
+  text-align: center;
+  color: white;
+}
+.contact-header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.contact-header p {
+  font-size: 17px;
+  opacity: .9;
+}
+
+/* ---------- MAIN CONTAINER ---------- */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ---------- CONTACT CARDS ---------- */
+.contact-grid {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-bottom: 40px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+  text-align: center;
+}
+.card i {
+  font-size: 32px;
+  color: #1d4ed8;
+  margin-bottom: 10px;
+}
+.card h3 {
+  margin-bottom: 8px;
+}
+
+/* ---------- FORM BOX ---------- */
+.form-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+form button:hover {
+  background: #0f3399;
+}
+
+/* ---------- GOOGLE MAP ---------- */
+.map {
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  margin-top: 30px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  margin-top: 50px;
+  background: #111827;
+  color: #ccc;
+  text-align: center;
+  padding: 30px 20px;
+}
+footer .social a {
+  color: #ccc;
+  margin: 0 12px;
+  font-size: 20px;
+}
+
+</style>
 </head>
 <body>
-    
-  <div class="topbar"> 
-    <header class="header">
-      <div class="logo">
-        <img src="logo .webp" alt="STACKLY Logo" />
-        <h2>STACKLY</h2>
-      </div>
-      <div class="contact">
-        <div class="contact1"> 
-          <!-- <p class="phone"><a href="./404.html">+91 12345 67890</a></p> -->
-          <!-- <p class="email"><a href="./404.html">info@stackly.com</a></p> -->
-        <!-- </div> -->
-        <!-- <div class="time">
-          <p class="hours">Mon-Fri: 9 am-6 pm</p>
-        </div> -->
-      <!-- </div> -->
-      
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">☰</button>
-    </header>
 
-    
-     <nav class="navBar">
-      <div class="navLinks">
-        <ul class="linkRight">
-          <li class="dropdown">
-            <a href="./home page2.html">Home ▼</a>
-            <ul class="dropdown-menu">
-              <li><a href="./index.html">Home page 1</a></li>
-            </ul>
-          </li>
-          <li><a href="./features.html">Features</a></li>
-          <!-- <li><a href="./industry.html">Shop</a></li> -->
-          <!-- <li><a href="./safety.html">support</a></li> -->
-           <li><a href="./pircing.html">Pricing</a></li> 
-           <li><a href="./why choose us.html">Why choose us</a></li> 
-         <!-- <li><a href="./dashboard.html">Dashboard</a></li> -->
+<!-- PAGE HEADER -->
+<section class="contact-header">
+  <h1>Contact Us</h1>
+  <p>We’re here to help! Reach out anytime.</p>
+</section>
 
-          <!-- <li><a href="./login.html">Log In</a></li> -->
-          <li class="sign"><button onclick="window.location.href='./contact.html'">Get in touch→ </button></li>
-        </ul>
-          </div>
-    </nav>
+<div class="container">
+
+  <!-- CONTACT INFO CARDS -->
+  <div class="contact-grid">
+
+    <div class="card">
+      <i class="fa-solid fa-phone"></i>
+      <h3>Phone</h3>
+      <p>+91 98765 43210</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-envelope"></i>
+      <h3>Email</h3>
+      <p>support@stackly.com</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-location-dot"></i>
+      <h3>Location</h3>
+      <p>Chennai, Tamil Nadu, India</p>
+    </div>
+
   </div>
 
+  <!-- FORM -->
+  <div class="form-box">
+    <h2>Send Us a Message</h2>
 
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Full Name">
+      <input type="email" id="email" placeholder="Email Address">
+      <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ⭐ RUNNING TRENDING PRODUCTS ⭐ -->
-<section class="running-products">
-  <h2>🔥 Trending Products</h2>
-  <div class="marquee">
-    <div class="marquee-track">
-      <img src="https://dummyimage.com/200x200/eee/000&text=Shoes">
-      <img src="https://dummyimage.com/200x200/ddd/000&text=Watch">
-      <img src="https://dummyimage.com/200x200/ccc/000&text=Bag">
-      <img src="https://dummyimage.com/200x200/bbb/000&text=Phone">
-      <img src="https://dummyimage.com/200x200/aaa/000&text=Laptop">
-
-      <!-- Duplicate for loop -->
-      <img src="https://dummyimage.com/200x200/eee/000&text=Shoes">
-      <img src="https://dummyimage.com/200x200/ddd/000&text=Watch">
-      <img src="https://dummyimage.com/200x200/ccc/000&text=Bag">
-      <img src="https://dummyimage.com/200x200/bbb/000&text=Phone">
-      <img src="https://dummyimage.com/200x200/aaa/000&text=Laptop">
-    </div>
+    <p id="responseMsg" style="margin-top:10px; font-size:15px;"></p>
   </div>
-</section>
 
-<!-- ⭐ HERO SECTION ⭐ -->
-<section class="hero">
-  <h2>Grow Your Online Business</h2>
-  <p>Start selling online with powerful tools built for e-commerce success.</p>
-  <a href="free trail.html"><button>Free Trial →</button></a>
-</section>
-
-<!-- ⭐ FEATURES SECTION ⭐ -->
-<section class="features">
-  <h3 class="section-title">Premium Features</h3>
-  <div class="grid">
-    <div class="card">
-      <h4>Online Store Builder</h4>
-      <p>Create beautiful e-commerce stores without coding.</p>
-    </div>
-    <div class="card">
-      <h4>Order Management</h4>
-      <p>Track, manage and fulfill orders with ease.</p>
-    </div>
-    <div class="card">
-      <h4>Smart Payments</h4>
-      <p>Accept UPI, Cards, Wallets & more securely.</p>
-    </div>
+  <!-- MAP -->
+  <div class="map">
+    <iframe 
+      width="100%" 
+      height="100%" 
+      frameborder="0" 
+      style="border:0"
+      allowfullscreen 
+      src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=India">
+    </iframe>
   </div>
-</section>
 
-<!-- ⭐ PRICING SECTION ⭐ -->
-<section class="pricing">
-  <h3 class="section-title">Affordable Pricing</h3>
-  <div class="grid">
-    <div class="card">
-      <h4>Starter</h4>
-      <p><strong>$10 / month</strong></p>
-      <p>Good for beginners.</p>
-      <button onclick="choosePlan('Starter')">Choose Plan</button>
-    </div>
+</div>
 
-    <div class="card">
-      <h4>Business</h4>
-      <p><strong>$25 / month</strong></p>
-      <p>Perfect for growing stores.</p>
-      <button onclick="choosePlan('Business')">Choose Plan</button>
-    </div>
-
-    <div class="card">
-      <h4>Enterprise</h4>
-      <p><strong>Custom Pricing</strong></p>
-      <p>Large-scale e-commerce.</p>
-      <button onclick="choosePlan('Enterprise')">Contact Us</button>
-    </div>
-  </div>
-</section>
-
-<!-- ⭐ WHY CHOOSE US ⭐ -->
-<section class="why">
-  <h3 class="section-title">Why Choose Us?</h3>
-  <div class="grid">
-    <div class="card">
-      <h4>Fast Setup</h4>
-      <p>Launch your store in just 5 mins.</p>
-    </div>
-    <div class="card">
-      <h4>SEO Friendly</h4>
-      <p>Rank better & get more customers.</p>
-    </div>
-    <div class="card">
-      <h4>24/7 Support</h4>
-      <p>We are always here for you.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ⭐ CTA ⭐ -->
-<section class="cta">
-  <h3>Start Selling Today</h3>
-  <p>Build your dream business with us!</p>
-  <a href="create.html"><button>Create My Store</button></a>
-</section>
-
-<!-- ⭐ FOOTER ⭐ -->
+<!-- FOOTER -->
 <footer>
-  <p>© 2025 STACKLY — Made with ❤️ in India</p>
-
-  <div class="social">
-    <a href="404 2.html"><i class="fab fa-twitter"></i></a>
-    <a href="404 2.html"><i class="fab fa-facebook"></i></a>
-    <a href="404 2.html"><i class="fab fa-instagram"></i></a>
-    <a href="404 2.html"><i class="fab fa-youtube"></i></a>
+  © 2025 Stackly — Made with ❤️ in India  
+  <div class="social"><br>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
   </div>
 </footer>
 
+<script>
+// VALIDATION SCRIPT
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let msg = document.getElementById("message").value;
+  let res = document.getElementById("responseMsg");
 
+  if(name === "" || email === "" || msg === ""){
+    res.style.color = "red";
+    res.innerHTML = "⚠️ Please fill all fields!";
+  } else {
+    res.style.color = "green";
+    res.innerHTML = "✔️ Message sent successfully!";
+  }
+});
+</script>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  <script src="home2.js"></script>
+</body>
+</html>
