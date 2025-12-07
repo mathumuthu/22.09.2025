@@ -1,118 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In / Sign Up</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Access</title>
+  <link rel="icon" href="logo.png" />
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-    body{
-      display:flex;justify-content:center;align-items:center;
-      min-height:100vh;background:linear-gradient(135deg,white,rgb(155, 207, 207));
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
     }
-    .wrapper{
-      width:380px;background:white;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.2);
-      overflow:hidden;
+
+    body {
+      background: blue;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .tabs{display:flex;cursor:pointer;}
-    .tabs div{
-      width:50%;padding:15px;text-align:center;font-weight:bold;
-      background:white;transition:0.3s;
+
+    .container {
+      background: #dcdcdc;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 380px;
+      transition: 0.5s ease;
+      text-align: center;
     }
-    .tabs .active{background:#2608ac;color:#fff;}
-    .form-box{padding:30px;display:none;}
-    .form-box.active{display:block;}
-    h2{text-align:center;margin-bottom:20px;color:#333;}
-    input{
-      width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;
-      border-radius:6px;outline:none;
+
+    h2 {
+      margin-bottom: 20px;
+      color: #5c007a;
     }
-    button{
-      width:100%;padding:12px;margin-top:10px;
-      background:#2575fc;border:none;border-radius:6px;
-      color:#fff;font-size:16px;cursor:pointer;transition:0.3s;
+
+    .input-group {
+      text-align: left;
+      margin-bottom: 15px;
     }
-    button:hover{background:#1a5fd6;}
-    .message{margin-top:10px;text-align:center;font-size:14px;}
-    .success{color:green;} .error{color:red;}
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #007bff;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-top: -5px;
+      margin-bottom: 15px;
+    }
+
+    .options a {
+      text-decoration: none;
+      color: red;
+      font-weight: 500;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background: red;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: olive;
+    }
+
+    .toggle-link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .toggle-link a {
+      color: orangered;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .form {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <!-- Tabs -->
-    <div class="tabs">
-      <div id="tab-signin" class="active">Sign In</div>
-      <div id="tab-signup">Sign Up</div>
+  <div class="container">
+    <!-- Login Form -->
+    <div class="form active" id="loginForm">
+      <h2>Sign In to Your Account</h2>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email" />
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password" />
+      </div>
+      <div class="options">
+        <label><input type="checkbox" /> Remember Me</label>
+        <a href="#" onclick="showForm('forgotForm')">Forgot Password?</a>
+      </div>
+      <button class="btn" onclick="login()">Sign In</button>
+      <p class="toggle-link">Don’t have an account? <a href="#" onclick="showForm('signupForm')">Create one</a></p>
     </div>
 
-    <!-- Sign In -->
-    <div class="form-box active" id="signin-box">
-      <h2>Sign In</h2>
-      <input type="email" id="signin-email" placeholder="Email" required>
-      <input type="password" id="signin-password" placeholder="Password" required>
-      <button id="signin-btn">Sign In</button>
-      <div class="message" id="signin-msg"></div>
+    <!-- Signup Form -->
+    <div class="form" id="signupForm">
+      <h2>Create Your Account</h2>
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="signupName" placeholder="Enter your name" />
+      </div>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="signupEmail" placeholder="Enter your email" />
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="Create password" />
+      </div>
+      <button class="btn" onclick="signup()">Sign Up</button>
+      <p class="toggle-link">Already have an account? <a href="#" onclick="showForm('loginForm')">Sign In</a></p>
     </div>
 
-    <!-- Sign Up -->
-    <div class="form-box" id="signup-box">
-      <h2>Sign Up</h2>
-      <input type="text" id="signup-name" placeholder="Full Name" required>
-      <input type="email" id="signup-email" placeholder="Email" required>
-      <input type="password" id="signup-password" placeholder="Password" required>
-      <button id="signup-btn">Sign Up</button>
-      <div class="message" id="signup-msg"></div>
+    <!-- Forgot Password Form -->
+    <div class="form" id="forgotForm">
+      <h2>Forgot Password</h2>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="forgotEmail" placeholder="Enter your registered email" />
+      </div>
+      <button class="btn" onclick="resetPassword()">Reset Password</button>
+      <p class="toggle-link"><a href="#" onclick="showForm('loginForm')">Back to Sign In</a></p>
     </div>
   </div>
 
   <script>
-    const tabSignin = document.getElementById('tab-signin');
-    const tabSignup = document.getElementById('tab-signup');
-    const signinBox = document.getElementById('signin-box');
-    const signupBox = document.getElementById('signup-box');
+    // Toggle between forms
+    function showForm(formId) {
+      document.querySelectorAll('.form').forEach(form => {
+        form.classList.remove('active');
+      });
+      document.getElementById(formId).classList.add('active');
+    }
 
-    // Switch tabs
-    tabSignin.addEventListener('click', ()=>{
-      tabSignin.classList.add('active');
-      tabSignup.classList.remove('active');
-      signinBox.classList.add('active');
-      signupBox.classList.remove('active');
-    });
-    tabSignup.addEventListener('click', ()=>{
-      tabSignup.classList.add('active');
-      tabSignin.classList.remove('active');
-      signupBox.classList.add('active');
-      signinBox.classList.remove('active');
-    });
+    // Login validation
+    function login() {
+      let email = document.getElementById('loginEmail').value.trim();
+      let password = document.getElementById('loginPassword').value.trim();
 
-    // Sign Up
-    document.getElementById('signup-btn').addEventListener('click', ()=>{
-      const name = document.getElementById('signup-name').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-      const password = document.getElementById('signup-password').value;
-      let users = JSON.parse(localStorage.getItem('users')) || [];
-      if(users.find(u=>u.email===email)){
-        document.getElementById('signup-msg').innerHTML = "<p class='error'>Email already registered!</p>";
-        return;
-      }
-      users.push({name,email,password});
-      localStorage.setItem('users',JSON.stringify(users));
-      document.getElementById('signup-msg').innerHTML = "<p class='success'>Account created! Now Sign In.</p>";
-    });
-
-    // Sign In
-    document.getElementById('signin-btn').addEventListener('click', ()=>{
-      const email = document.getElementById('signin-email').value.trim();
-      const password = document.getElementById('signin-password').value;
-      let users = JSON.parse(localStorage.getItem('users')) || [];
-      const user = users.find(u=>u.email===email && u.password===password);
-      if(user){
-        document.getElementById('signin-msg').innerHTML = `<p class='success'>Welcome back, ${user.name}!</p>`;
-        setTimeout(()=> alert("signin sucessfully.."),1000);
+      if (email === "" || password === "") {
+        alert("Please fill in all fields!");
       } else {
-        document.getElementById('signin-msg').innerHTML = "<p class='error'>Invalid email or password!</p>";
+        alert("Welcome!");
+        window.location.href = "404.html";
       }
-    });
+    }
+
+    // Signup validation
+    function signup() {
+      let name = document.getElementById('signupName').value.trim();
+      let email = document.getElementById('signupEmail').value.trim();
+      let password = document.getElementById('signupPassword').value.trim();
+
+      if (name === "" || email === "" || password === "") {
+        alert("Please fill in all fields!");
+      } else {
+        alert("Welcome!");
+        window.location.href = "404.html";
+      }
+    }
+
+    // Forgot password validation
+    function resetPassword() {
+      let email = document.getElementById('forgotEmail').value.trim();
+
+      if (email === "") {
+        alert("Please fill in this field!");
+      } else {
+        alert("Password reset link has been sent to your email!");
+        window.location.href = "404.html";
+      }
+    }
   </script>
 </body>
 </html>

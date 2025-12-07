@@ -53,3 +53,72 @@
     function restart(){ clearInterval(timer); timer = setInterval(next, 4500); }
     restart();
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // MOBILE MENU TOGGLE
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.querySelector(".nav-links");
+
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  // MOBILE DROPDOWN (touch to open)
+  const dropdownItems = document.querySelectorAll("nav ul li");
+
+  dropdownItems.forEach(li => {
+    li.addEventListener("click", function (e) {
+      if (window.innerWidth <= 640) {
+        this.classList.toggle("open");
+        e.stopPropagation();
+      }
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  // ---- MOBILE DROPDOWN FOR HOME ----
+//   const dropdown = document.querySelector(".dropdown .drop-btn");
+
+//   dropdown.addEventListener("click", function (e) {
+//     if (window.innerWidth <= 640) {
+//       e.preventDefault(); // prevent page jump
+//       this.parentElement.classList.toggle("open");
+//     }
+//   });
+

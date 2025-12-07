@@ -1,0 +1,483 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+ 
+  overflow-x: hidden;
+}
+
+
+
+/* ————————————————————— */
+/* GLOBAL OVERFLOW & BOX-SIZING FIXES */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;      /* hide horizontal overflow on mobile */
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+span{
+  color: #007bff;
+}
+
+
+/*=== topbar ===*/
+.topbar {
+  background:black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;  
+  width: 100%;
+}
+
+
+/*=== header ===*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background:whitesmoke ;
+}
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 50px;
+  
+}
+.header .logo img {
+  height: 40px;
+  width: auto;
+}
+.header .logo h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color:black;
+}
+.header .contact {
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.header .contact .contact1{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.header .contact .contact1>p{
+    margin: 0;
+    line-height:1px;
+    color: #555;
+    font-weight: bold;
+}
+.header .contact .time>p{
+    margin: 0;
+    font-size:11px;
+    line-height:1px;
+    font-weight: bold;
+    cursor: pointer;
+    /* color:white; */
+    color:white;
+     /* Animation */
+    animation: pulse-effect 2s ease-in-out infinite;
+}
+@keyframes pulse-effect {
+  0% {
+    transform: scale(1.10);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.header .contact a {
+  color: rgb(36, 4, 4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.header .contact a:hover {
+  color:black;
+}
+.header .contact .time>p:hover{
+    color: black;
+}
+
+
+/*=== navbar ===*/
+.navBar {
+  display: block;
+  background: whitesmoke;
+  border-top: 1px solid gold;
+  padding: 10px;
+  
+}
+.navBar .navLinks {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 80px;
+}
+.navBar .linkRight {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1.5rem;
+  gap: 1.5rem;
+}
+.linkRight li {
+  position: relative;
+}
+.linkRight li a {
+  text-decoration: none;
+  font-size: 1.03rem;
+  color:black;
+  font-weight: bold;
+  padding: 0.5rem 0.75rem;
+  transition: background 0.3s, color 0.3s;
+}
+.linkRight li a:hover {
+  /* background:white; */
+  color:rgb(175, 6, 102);
+}
+.linkRight li.sign button {
+  background: blue;
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  font-weight: bold;
+  box-sizing: border-box;
+    /* Pulse animation */
+  animation: pulse-btn 2s ease-in-out infinite;
+}
+/* @keyframes for pulse */
+@keyframes pulse-btn {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.linkRight li.sign button:hover {
+    background-color: yellowgreen;
+    color: whitesmoke;
+}
+
+
+/*=== Dropdown menu ===*/
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  min-width: 180px;
+  padding: 0.5rem 0;
+  list-style: none;
+}
+.dropdown:hover .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-5);
+}
+.dropdown-menu li a {
+  display: block;
+  color:black;
+  margin-top:-22px;
+  font-size:1rem;
+}
+/* Hamburger button styling */
+.hamburger {
+  display: none;
+  font-size:2rem;
+  color:black;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.3s;
+}
+
+/* Mobile / small-screen styles */
+@media (max-width: 450px) {
+  .header{
+    height: 150px;
+  }
+  .header .contact {
+    text-align: center;
+    /* font-size: 0.8rem; */
+    /* margin-top: 0.5rem; */
+    display: flex;
+    flex-direction: column;
+  }
+  .header .contact .contact1{
+    display: flex;
+    flex-direction: column;
+  }
+  .navBar {
+    display: none;
+    width: 100%;
+  }
+  .navBar.active {
+    display: block;
+    background:rgb(208, 205, 205);
+  }
+  .navBar .navLinks {
+    padding: 1rem;
+  }
+  .navBar .linkRight {
+    flex-direction: column;
+    gap: 0;
+  }
+  .linkRight li {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+  .linkRight li a {
+    display: block;
+    width: 100%;
+    color:#007bff;
+    padding: 0.75rem 1rem;
+    background: transparent;
+  }
+  .linkRight li.sign button {
+    width: 100%;
+    text-align: center;
+    background: #ffffff;
+    color: #007bff;
+    margin-top: 0.5rem;
+  }
+    /* Ensure last items appear correctly */
+  .linkRight li.sign,
+  .linkRight li:last-child {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Make Contact Us button visible and spaced */
+  .linkRight li.sign button {
+    background: red;
+    color: white;
+    margin: 10px 0;
+    width: 90%;
+  }
+
+  /* Style Log In link for better visibility */
+  .linkRight li a[href*='Log In'] {
+    color: white;
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.3);
+  }
+
+  /* Allow scrolling if list is long */
+  .navBar.active .linkRight {
+    overflow-y: auto;
+    max-height: 80vh;
+    padding-bottom: 100px; /* space for button visibility */
+  }
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+    background: transparent;
+  }
+   /* .dropdown:hover .dropdown-menu {
+    visibility: visible;
+  }  */
+  .dropdown-menu li a {
+    color:black;
+    padding-left: 2rem;
+  }
+  .hamburger{
+    display: block;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ⭐ Running Products */
+.running-products {
+  padding: 40px 0;
+  background: #2337ff;
+  text-align: center;
+}
+.running-products h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 40px;
+  animation: scroll 18s linear infinite;
+}
+.marquee img {
+  width: 150px;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ⭐ Hero */
+.hero {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(to right, #dbe9ff, #8fb3ff);
+  color: #14295a;
+}
+.hero button {
+  background: #1a1aff;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* ⭐ Sections */
+.section-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.card button {
+  margin-top: 10px;
+  padding: 10px;
+  background: #0f3169;
+  color: white;
+  border-radius: 6px;
+  border: none;
+}
+
+/* ⭐ CTA */
+.cta {
+  padding: 50px 20px;
+  background: #1d4ed8;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+.cta button {
+  margin-top: 15px;
+  padding: 12px 22px;
+  background: yellow;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* ⭐ Footer */
+footer {
+  background: #111827;
+  color: #ccc;
+  text-align: center;
+  padding: 30px;
+  margin-top: 40px;
+}
+footer .social a {
+  margin: 0 10px;
+  color: #ddd;
+  font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
